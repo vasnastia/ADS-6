@@ -5,20 +5,19 @@
 
 template<typename T, int size>
 class TPQueue {
-private:
+ private:
     T arr[150];
     int start1, final1;
 
-public:
+ public:
     TPQueue() : start1(0), final1(0) {}
     int getSize() {
         return final1 - start1;
     }
     void push(T k) {
         if (getSize() >= size) {
-            throw std::string("Full!"); 
-        }
-        else {
+            throw std::string("Full!");
+        } else {
             int temp = final1++;
             while ((--temp >= start1) && (arr[temp % size].prior < k.prior)) {
                 arr[(temp + 1) % size] = arr[temp % size];
@@ -26,13 +25,13 @@ public:
             arr[(temp + 1) % size] = k;
         }
     }
-    T pop(){
+    T pop() {
         return arr[(start1++) % size];
     }
-    T back(){
+    T back() {
         return arr[(final1 - 1) % size];
     }
-    T front(){
+    T front() {
         return arr[(start1) % size];
     }
 };
